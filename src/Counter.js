@@ -1,4 +1,5 @@
 import React from "react";
+import { CounterDisplay } from "./CounterDisplay";
 export class Counter extends React.Component {
     constructor(props) {
         super(props)
@@ -15,7 +16,7 @@ export class Counter extends React.Component {
     }
     render() {
         return (
-            <h1>Seconds: {this.state.count}</h1>
+            <CounterDisplay count={this.state.count} />
         )
     }
 }
