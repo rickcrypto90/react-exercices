@@ -3,7 +3,7 @@ import React from "react";
 export class Login extends React.Component {
 
     constructor(props) {
-        const {login, onLogin} = props;
+        const { login, onLogin } = props;
         super(props);
         this.state = {
             username: "",
@@ -13,9 +13,14 @@ export class Login extends React.Component {
 
 
         }
-         
-        this.handleInput = this.handleInput.bind(this);
         this.onLogin = onLogin;
+        this.initialState = Object.freeze(this.state)
+        this.handleInput = this.handleInput.bind(this);
+        this.handleReset = this.handleReset.bind(this);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        this.setState({ login: nextProps.login })
     }
     handleInput(e) {
         const name = e.target.name
@@ -23,9 +28,13 @@ export class Login extends React.Component {
             [name]: e.target.type === "checkbox" ? e.target.checked : e.target.value,
         })
     }
-    
-    componentWillReceiveProps(nextProps){
-       this.setState({login: nextProps.login})
+
+    handleReset(e) {
+
+        for (let stats in this.state) {
+            e.preventDefault()
+            this.setState({ [stats]: this.initialState[stats] })
+        }
     }
 
 
@@ -41,9 +50,10 @@ export class Login extends React.Component {
                         <input type="password" name="password" value={this.state.password} onChange={this.handleInput} /><br />
                         <label>Remember me?</label>
                         <input type="checkbox" name="remember" value={this.state.remember} onChange={this.handleInput} /><br /><br />
-                        <input type="submit" disabled={disabled} onClick={this.onLogin}/><br /><br />
+                        <input type="submit" disabled={disabled} onClick={this.onLogin} /><br /><br />
+                        <button onClick={this.handleReset}>Reset</button>
                         <p>{JSON.stringify(this.state)}</p>
-                     
+
                     </form>
                 </div>
             </div>
