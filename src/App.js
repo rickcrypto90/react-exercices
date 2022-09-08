@@ -7,6 +7,16 @@ import {ClickCounter } from "./ClickCounter";
 import {ClickTracker } from "./ClickTracker";
 import { Login } from "./Login";
 export class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {login: false}
+        this.onLogin= this.onLogin.bind(this);}
+
+        onLogin(e){
+            e.preventDefault();
+            this.setState({
+                login: true});
+        }
     render() {
         return (
             <div>
@@ -16,7 +26,8 @@ export class App extends React.Component {
                 <ClickCounter/>
                 <ClickTracker/>
                 <InteractiveWelcome/>
-                <Login/>
+                <Login onLogin={this.onLogin} login={this.state.login}/>
+                
                 
 
             </div>)
