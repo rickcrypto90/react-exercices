@@ -6,6 +6,7 @@ import { Counter } from "./Counter";
 import {ClickCounter } from "./ClickCounter";
 import {ClickTracker } from "./ClickTracker";
 import { Login } from "./Login";
+import { LoginUncontrolled } from "./LoginUncontrolled";
 export class App extends React.Component {
     constructor(props) {
         super(props);
@@ -27,6 +28,8 @@ export class App extends React.Component {
                 <ClickTracker/>
                 <InteractiveWelcome/>
                 <Login onLogin={this.onLogin} login={this.state.login}/>
+                <br />
+                <LoginUncontrolled/>
                 
                 
 
