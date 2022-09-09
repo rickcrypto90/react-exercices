@@ -22,7 +22,7 @@ export class TodoList extends React.Component {
             items: [...prevState.items, this.state.input],
             input: ""
         }))
-        
+
     }
 
     handleReset(e) {
@@ -35,15 +35,18 @@ export class TodoList extends React.Component {
 
 
 
-
     render() {
-        const list = this.state.items.map(item => <li>{item}</li>)
+        const list = this.state.items.map((item) => <li>{item} <button onClick={() => this.setState({
+            items: this.state.items.filter(function (el) {
+                return el !== item
+            })
+        })}>Rimuovi li</button></li>)
         return (
             <div>
                 <ul>
                     {list}
                 </ul>
-                <input type="text" onChange={this.handleInput} value={this.state.input}/>
+                <input type="text" onChange={this.handleInput} value={this.state.input} />
                 <button onClick={this.handleClick}>CLiccami</button>
                 <button onClick={this.handleReset}>Reset</button>
             </div>
