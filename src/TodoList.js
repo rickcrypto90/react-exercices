@@ -10,6 +10,7 @@ export class TodoList extends React.Component {
         }
         this.handleInput = this.handleInput.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleReset = this.handleReset.bind(this);
     }
     handleInput(e) {
         this.setState({ input: e.target.value })
@@ -24,6 +25,14 @@ export class TodoList extends React.Component {
         
     }
 
+    handleReset(e) {
+        e.preventDefault();
+        this.setState({
+            items: [],
+            input: ""
+        })
+    }
+
 
 
 
@@ -36,6 +45,7 @@ export class TodoList extends React.Component {
                 </ul>
                 <input type="text" onChange={this.handleInput} value={this.state.input}/>
                 <button onClick={this.handleClick}>CLiccami</button>
+                <button onClick={this.handleReset}>Reset</button>
             </div>
         )
     }
