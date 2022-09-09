@@ -10,11 +10,11 @@ export class LoginUncontrolled extends React.Component {
         this.handleReset = this.handleReset.bind(this);
     }
     handleInput(event) {
-        event.preventDefault();
+        event.preventDefault()
         const { usernameU, passwordU, checkboxU } = this;
         const isEnabled = (usernameU.current.value.length > 0 && passwordU.current.value.length > 0);
         document.querySelector(".submit").disabled =isEnabled;
-        document.querySelector(".loginUncontrolled").innerHTML = `Username:${usernameU.current.value} Password:${passwordU.current.value} Remember:${checkboxU.current.value}`;
+        document.querySelector(".loginUncontrolled").innerHTML = `Username:${usernameU.current.value} Password:${passwordU.current.value} Remember:${checkboxU.current.checked}`;
 
     }
     handleReset(e) {
@@ -25,6 +25,9 @@ export class LoginUncontrolled extends React.Component {
 
         
     }
+    componentDidMount(){
+        this.usernameU.current.focus()
+    }
     render() {
         return (
             <div className="login">
@@ -34,11 +37,11 @@ export class LoginUncontrolled extends React.Component {
                         <legend>Form Uncontrolled</legend>
                         <form>
                             <label>Username</label>
-                            <input type="text" ref={this.usernameU} onChange={this.handleInput} /><br /><br />
+                            <input type="text" ref={this.usernameU} onChange={this.handleInput}/><br /><br />
                             <label>Password</label>
                             <input type="password" ref={this.passwordU} onChange={this.handleInput} /><br /><br />
                             <label>Remember me?</label>
-                            <input type="checkbox" ref={this.checkboxU} onChange={this.handleInput} /><br /><br />
+                            <input type="checkbox" ref={this.checkboxU} onChange={this.handleInput} unchecked/><br /><br />
                             <input className="submit" type="submit" disabled/><br /><br />
                             <p className="loginUncontrolled"></p>
                             <button onClick={this.handleReset}>Reset</button>
