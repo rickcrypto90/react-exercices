@@ -8,3 +8,6 @@
 .red {
     background-color: red;
 }
+.container{
+    border: 1px solid red;
+}
