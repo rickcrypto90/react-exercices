@@ -34,7 +34,5 @@ export class App extends React.Component {
                 <Login onLogin={this.onLogin} login={this.state.login} />
                 <br />
                 <LoginUncontrolled />
-                <TodoList />
-            </Container>)
-    }
-}
+                <TodoList render= {(array, func) => array.map((item) => <li key={item}> {item} <button value={item}onClick={func}>Rimuovi li</button></li>)}  />
+            </Container>)}}

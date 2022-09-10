@@ -11,6 +11,7 @@ export class TodoList extends React.Component {
         this.handleInput = this.handleInput.bind(this);
         this.handleClick = this.handleClick.bind(this);
         this.handleReset = this.handleReset.bind(this);
+        this.handleCancel = this.handleCancel.bind(this);
     }
     handleInput(e) {
         this.setState({ input: e.target.value })
@@ -32,19 +33,23 @@ export class TodoList extends React.Component {
             input: ""
         })
     }
-
-
+    
+    handleCancel(e) {
+        e.preventDefault();
+        this.setState({
+            items: this.state.items.filter(function (el) {
+                return el !== e.target.value
+            }
+    )})}
 
     render() {
-        const list = this.state.items.map((item) => <li>{item} <button onClick={() => this.setState({
-            items: this.state.items.filter(function (el) {
-                return el !== item
-            })
-        })}>Rimuovi li</button></li>)
+       
+        console.log(this.state.items)
         return (
             <div>
                 <ul>
-                    {list}
+                    {this.props.render(this.state.items, this.handleCancel)}
+                    
                 </ul>
                 <input type="text" onChange={this.handleInput} value={this.state.input} />
                 <button onClick={this.handleClick}>CLiccami</button>

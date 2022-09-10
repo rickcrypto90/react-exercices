@@ -41,7 +41,7 @@ export class LoginUncontrolled extends React.Component {
                             <label>Password</label>
                             <input type="password" ref={this.passwordU} onChange={this.handleInput} /><br /><br />
                             <label>Remember me?</label>
-                            <input type="checkbox" ref={this.checkboxU} onChange={this.handleInput} unchecked/><br /><br />
+                            <input type="checkbox" ref={this.checkboxU} onChange={this.handleInput} unchecked = "true"/><br /><br />
                             <input className="submit" type="submit" disabled/><br /><br />
                             <p className="loginUncontrolled"></p>
                             <button onClick={this.handleReset}>Reset</button>
