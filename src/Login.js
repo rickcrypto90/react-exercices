@@ -1,67 +1,52 @@
-import React from "react";
+import React, { useState } from "react";
 
-export class Login extends React.Component {
+export function Login(props) {
 
-    constructor(props) {
-        const { login, onLogin } = props;
-        super(props);
-        this.state = {
-            username: "",
-            password: "",
-            remember: false,
-            login: login
+    const [data, setdata] = useState({ username: '', password: '', remember: false })
 
-
-        }
-        this.onLogin = onLogin;
-        this.initialState = Object.freeze(this.state)
-        this.handleInput = this.handleInput.bind(this);
-        this.handleReset = this.handleReset.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({ login: nextProps.login })
-    }
-    handleInput(e) {
-        const name = e.target.name
-        this.setState({
-            [name]: e.target.type === "checkbox" ? e.target.checked : e.target.value,
+    function inputHandler(e) {
+        setdata(prev => {
+            const { name, type, value, checked } = e.target
+            return { ...prev, [name]: type === 'checkbox' ? checked : value }
         })
+
     }
 
-    handleReset(e) {
+    function loginHandler(e) {
+        e.preventDefault()
+        props.onLogin(data);
+    }
 
-        for (let stats in this.state) {
-            e.preventDefault()
-            this.setState({ [stats]: this.initialState[stats] })
-        }
+    function resetHandler(e) {
+        e.preventDefault();
+        setdata({ username: '', password: '', remember: false, login: false })
     }
 
 
-    render() {
-        const disabled = (this.state.username && this.state.password) ? false : true
-        const classButton = this.state.password.length <8 ? "red" : "green"
-        return (
-            <div className="login">
-                <div className="form-group">
 
-                    <fieldset>
+
+    return (
+        <div className="login">
+            <div className="data-group">
+                <fieldset>
                     <legend>Form Controlled</legend>
-                        <form>
-                            <label>Username</label>
-                            <input type="text" name="username" value={this.state.username} onChange={this.handleInput} /><br /> <br />
-                            <label>Password</label>
-                            <input type="password" name="password" value={this.state.password} onChange={this.handleInput} /><br /> <br />
-                            <label>Remember me?</label>
-                            <input type="checkbox" name="remember" value={this.state.remember} onChange={this.handleInput} /><br /><br />
-                            <input type="submit" disabled={disabled} onClick={this.onLogin} className= {classButton} /><br /><br />
-                            <button onClick={this.handleReset}>Reset</button>
-                            <p>State: {JSON.stringify(this.state)}</p>
-    
-                        </form>
-                    </fieldset>
-                </div>
+                    <data>
+                        <label htmlFor="username">Username</label>
+
+                        <input name="username" onChange={inputHandler} value={data.username} /> <br /><br />
+                        <label htmlFor="password">Password</label>
+                        <input name="password" onChange={inputHandler} value={data.password} type='password' /> <br /><br />
+                        <label htmlFor="remember">Remember me?</label>
+                        <input name="remember" onChange={inputHandler} checked={data.remember} type='checkbox' /><br /><br />
+                        {!data.username || !data.password
+                            ? <button disabled>Invia</button>
+                            : <button onClick={loginHandler}>Invia</button>}
+                        <p>Username:{data.username} Password:{data.password} Remember:{data.remember.toString()}</p>
+                        <br /><br />
+                        <button onClick={resetHandler}>Reset</button>
+                    </data>
+                </fieldset>
             </div>
-        )
-    }
+        </div>
+    )
 }
