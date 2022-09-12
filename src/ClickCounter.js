@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 //  export class ClickCounter extends React.Component {
 //   constructor(props) {
 //      super(props);
@@ -18,8 +18,11 @@ import { useState } from "react";
 //          )
 //      }
 //  }
-export function ClickCounter() {
+export function ClickCounter(props) {
     const [count, setCount] = useState(0);
+    useEffect(() => {
+          props.sideEffect(count);
+      });
     return (
         <div>
             <p>{count}</p>

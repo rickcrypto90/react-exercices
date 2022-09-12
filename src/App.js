@@ -20,7 +20,9 @@ export class App extends React.Component {
         this.onLogin = this.onLogin.bind(this);
         this.OnLanguageChange = this.OnLanguageChange.bind(this);
     }
-
+   onCounterChange = (counter) => {
+        console.log(`Sei al numero ${counter}`)
+    }
     onLogin(e) {
         e.preventDefault();
         this.setState({
@@ -50,7 +52,7 @@ export class App extends React.Component {
                 <Hello />
                 <Welcome name="John" age="17" />
                 <Counter count="0" increment="1" interval="1000" />
-                <ClickCounter />
+                <ClickCounter sideEffect= {this.onCounterChange}/>
                 <ClickTracker />
                 <InteractiveWelcome />
                 <Login onLogin={this.onLogin} login={this.state.login} />
