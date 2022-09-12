@@ -57,5 +57,5 @@ export class App extends React.Component {
                 <br />
                 <LoginUncontrolled />
                 <TodoList render= {(array, func) => array.map((item) => <li key={item}> {item} <button value={item}onClick={func}>Rimuovi li</button></li>)}  />
-                <Sum numbers={[1,2,3,4,5,6]}/>
+                <Sum/>
             </Container>)}}

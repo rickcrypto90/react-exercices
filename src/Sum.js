@@ -6,3 +6,7 @@ export function Sum(props) {
     <h1>{sum}</h1>
     )
 }
+
+Sum.defaultProps = {
+   numbers : [5,6,7,8,99]
+}
