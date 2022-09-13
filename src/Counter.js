@@ -1,21 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { CounterDisplay } from "./CounterDisplay";
-export class Counter extends React.Component {
-    state = {
-        count: 0
+
+export function Counter(props) {
+    const [seconds, setSeconds] = useState(0);
+    const [isActive, setIsActive] = useState(true);
+  
+    function toggle() {
+      setIsActive(!isActive);
     }
-    componentDidMount() {
-        setInterval(() => {
-            this.setState((state) => {
-                return {
-                    count: state.count + parseInt(this.props.increment)
-                }
-            })
-        }, this.props.interval)
+  
+    function reset() {
+      setSeconds(0);
+      setIsActive(false);
     }
-    render() {
-        return (
-            <CounterDisplay count={this.state.count} />
-        )
-    }
+  
+    useEffect(() => {
+      let interval = null;
+      if (isActive) {
+        interval = setInterval(() => {
+          setSeconds(seconds => seconds + 1);
+        }, 1000);
+      } else if (!isActive && seconds !== 0) {
+        clearInterval(interval);
+      }
+      return () => clearInterval(interval);
+    }, [isActive, seconds]);
+
+    return (
+     <div>
+            <CounterDisplay count={seconds} />
+            <button onClick={toggle}>
+          {isActive ? 'Pause' : 'Start'}
+        </button>
+            <button onClick={reset}>Toggle Mount</button>
+     </div>
+    )
 }
