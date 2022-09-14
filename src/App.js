@@ -13,6 +13,7 @@ import { LanguageContext } from './LanguageContext'
 import { DisplayLanguage } from "./DisplayLanguage";
 import {Sum} from "./Sum";
 import { GithubUserList } from "./GithubUserList";
+import { LoginWithCustomHook } from "./LoginWithCustomHook";
 export class App extends React.Component {
     constructor(props) {
         super(props);
@@ -63,5 +64,6 @@ export class App extends React.Component {
                 <TodoList render= {(array, func) => array.map((item) => <li key={item}> {item} <button value={item}onClick={func}>Rimuovi li</button></li>)}  />
                 <Sum/>
                 <GithubUserList/>
+                <LoginWithCustomHook />
 
             </Container>)}}
