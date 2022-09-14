@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import { useGithubUser } from "./useGithubUser";
 
 export function GithubUser(props){
- const {user} = useGithubUser(props.username)
+ const {user, getUser} = useGithubUser(props.username)
+ useEffect(() => {
+    getUser()
+ }, [user])
 return(
     <div>{Object.entries(user).map(user =>
         <tr>
