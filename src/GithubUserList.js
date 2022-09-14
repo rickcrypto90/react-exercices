@@ -10,7 +10,7 @@ export function GithubUserList(){
     }
 
     function userListPush(){
-        setUsersList((prev)=>{return [...prev, username]})
+        setUsersList((prev)=>{return [username]})
         setUsername(()=>{return ''})
     }
 
