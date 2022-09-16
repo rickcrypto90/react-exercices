@@ -23,6 +23,7 @@ export function AppRouter() {
         <Route path="/" element={<Welcome name="John" />} />
         <Route path="/counter" element={<Counter />} />
         <Route path="/users" element={<GithubUserList />} >
+        <Route index element={<h1>Add a user and select it</h1>} />
         <Route path="/users/:username" element={<ShowGithubUser />}/>
         </Route>
         <Route path="*" element={<PageNotFound />} />
