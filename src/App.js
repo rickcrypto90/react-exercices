@@ -11,25 +11,53 @@ import { TodoList } from "./TodoList";
 import { Container } from "./Container";
 import { LanguageContext } from './LanguageContext'
 import { DisplayLanguage } from "./DisplayLanguage";
-import {Sum} from "./Sum";
+import { Sum } from "./Sum";
 import { GithubUserList } from "./GithubUserList";
 import { LoginWithCustomHook } from "./LoginWithCustomHook";
-import {CarDetails} from "./CarDetails";
+import { CarDetails } from "./CarDetails";
+import { FilteredList } from "./FilteredList";
 const initialData = {
     model: "Fiat Panda",
     year: 2014,
     color: "white"
 }
 
+const people =
+    [{
+        name: "Pippo",
+        id: 3545,
+        age: 15
+    },
+
+    {
+        name: "Topolino",
+        id: 545,
+        age: 40
+    }
+        ,
+    {
+        name: "Paperino",
+        id: 355,
+        age: 40
+    },
+    {
+        name: "Minni",
+        id: 354,
+        age: 16
+    }
+    ]
+
 export class App extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { login: false,
-        language: "en" }
+        this.state = {
+            login: false,
+            language: "en"
+        }
         this.onLogin = this.onLogin.bind(this);
         this.OnLanguageChange = this.OnLanguageChange.bind(this);
     }
-   onCounterChange = (counter) => {
+    onCounterChange = (counter) => {
         console.log(`Sei al numero ${counter}`)
     }
     onLogin(e) {
@@ -45,33 +73,36 @@ export class App extends React.Component {
     }
     render() {
         return (
-            
+
             <Container title="My react app">
-            DESKTOP
-            <LanguageContext.Provider value={this.state.language}>
-                <div>
-                    <select value={this.state.language} onChange={this.OnLanguageChange}>
-                        <option value={'en'}>English</option>
-                        <option value={'it'}>Italiano</option>
-                    </select>
-                    <DisplayLanguage/>
-                </div>
-                
-            </LanguageContext.Provider>
-            <br /><br />
+                DESKTOP
+                <LanguageContext.Provider value={this.state.language}>
+                    <div>
+                        <select value={this.state.language} onChange={this.OnLanguageChange}>
+                            <option value={'en'}>English</option>
+                            <option value={'it'}>Italiano</option>
+                        </select>
+                        <DisplayLanguage />
+                    </div>
+
+                </LanguageContext.Provider>
+                <br /><br />
                 <Hello />
                 <Welcome name="John" age="17" />
                 <Counter count="0" increment="1" interval="1000" />
-                <ClickCounter sideEffect= {this.onCounterChange}/>
+                <ClickCounter sideEffect={this.onCounterChange} />
                 <ClickTracker />
                 <InteractiveWelcome />
                 <Login onLogin={this.onLogin} login={this.state.login} />
                 <br />
                 <LoginUncontrolled />
-                <TodoList render= {(array, func) => array.map((item) => <li key={item}> {item} <button value={item}onClick={func}>Rimuovi li</button></li>)}  />
-                <Sum/>
-                <GithubUserList/>
+                <TodoList render={(array, func) => array.map((item) => <li key={item}> {item} <button value={item} onClick={func}>Rimuovi li</button></li>)} />
+                <Sum />
+                <GithubUserList />
                 <LoginWithCustomHook />
-                <CarDetails initialData= {initialData}/>
+                <CarDetails initialData={initialData} />
+                <FilteredList people={people}/>
 
-            </Container>)}}
+            </Container>)
+    }
+}
