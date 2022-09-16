@@ -1,13 +1,15 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Welcome } from "./Welcome";
+import {Counter} from "./Counter";
+import { BrowserRouter, Route, Routes} from "react-router-dom";
 
-export function AppRouter() {
+export  function AppRouter() {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Welcome name="John" />}>
-          </Route>
+          <Route path="/" element={<Welcome name="John" />}/>
+          <Route path="/about" element={<Counter />}/>
+   
         </Routes>
       </BrowserRouter>
     );
