@@ -14,6 +14,13 @@ import { DisplayLanguage } from "./DisplayLanguage";
 import {Sum} from "./Sum";
 import { GithubUserList } from "./GithubUserList";
 import { LoginWithCustomHook } from "./LoginWithCustomHook";
+import {CarDetails} from "./CarDetails";
+const initialData = {
+    model: "Fiat Panda",
+    year: 2014,
+    color: "white"
+}
+
 export class App extends React.Component {
     constructor(props) {
         super(props);
@@ -65,5 +72,6 @@ export class App extends React.Component {
                 <Sum/>
                 <GithubUserList/>
                 <LoginWithCustomHook />
+                <CarDetails initialData= {initialData}/>
 
             </Container>)}}
