@@ -2,11 +2,14 @@ import React from "react";
 import { Welcome } from "./Welcome";
 import {Counter} from "./Counter";
 import {ShowGithubUser} from "./ShowGithubUser";
-import { BrowserRouter, Route, Routes} from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link} from "react-router-dom";
 
 export  function AppRouter() {
     return (
       <BrowserRouter>
+        <Link to="/">Welcome</Link>
+        <Link to="/counter">Counter</Link>
+        <Link to="/users/:username">Users</Link>
         <Routes>
           <Route path="/" element={<Welcome name="John" />}/>
           <Route path="/counter" element={<Counter />}/>
