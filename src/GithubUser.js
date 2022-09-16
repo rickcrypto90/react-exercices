@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
 import { useGithubUser } from "./useGithubUser";
 
-export function GithubUser(props){
- const {user, getUser} = useGithubUser(props.username)
+export function GithubUser({username}){
+ const {user, getUser} = useGithubUser(username)
  useEffect(() => {
     getUser()
  }, [user])
