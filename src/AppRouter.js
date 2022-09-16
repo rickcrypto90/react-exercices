@@ -3,6 +3,7 @@ import { Welcome } from "./Welcome";
 import { Counter } from "./Counter";
 import { Route, Routes, Link } from "react-router-dom";
 import { ShowGithubUser } from "./ShowGithubUser";
+import { GithubUserList } from "./GithubUserList";
 
 export function AppRouter() {
   function PageNotFound() {
@@ -17,11 +18,13 @@ export function AppRouter() {
     <div>
       <nav><ul><li ><Link to="/">Home</Link></li>
       <li ><Link to="/counter">Counter</Link></li>
-      <li ><Link to="/users/rickcrypto90">Users</Link></li></ul></nav>
+      <li ><Link to="/users">Users</Link></li></ul></nav>
       <Routes>
         <Route path="/" element={<Welcome name="John" />} />
         <Route path="/counter" element={<Counter />} />
-        <Route path="/users/:username" element={<ShowGithubUser />} />
+        <Route path="/users" element={<GithubUserList />} >
+        <Route path="/users/:username" element={<ShowGithubUser />}/>
+        </Route>
         <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
